@@ -38,7 +38,7 @@ final class EtudiantFactory extends ModelFactory
     public function __construct()
     {
         parent::__construct();
-        $this->transliterator = \Transliterator::create('Any-Lower; Latin-ASCII');
+
     }
 
     /**
@@ -48,6 +48,7 @@ final class EtudiantFactory extends ModelFactory
      */
     protected function getDefaults(): array
     {
+        $this->transliterator = \Transliterator::create('Any-Lower; Latin-ASCII');
         $firstname = self::faker()->firstName();
         $lastname = self::faker()->lastName();
         $email = $this->normalizeName($firstname).'.'.$this->normalizeName($lastname).'@'.self::faker()->domainName();
