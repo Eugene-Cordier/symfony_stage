@@ -14,7 +14,7 @@ class RecruteurFixtures extends Fixture
     {
         RecruteurFactory::createMany(30, function () {
             return [
-                'category' => EntrepriseFactory::random(),
+                'entreprise' => EntrepriseFactory::random(),
             ];
         });
     }
