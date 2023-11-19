@@ -29,7 +29,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class AdministrateurFactory extends ModelFactory
 {
-    private \Transliterator $transliterator;
+
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
@@ -47,7 +47,6 @@ final class AdministrateurFactory extends ModelFactory
      */
     protected function getDefaults(): array
     {
-        $this->transliterator = \Transliterator::create('Any-Lower; Latin-ASCII');
         $firstname = self::faker()->firstName();
         $lastname = self::faker()->lastName();
         $login = $firstname.'_'.$firstname;
@@ -57,10 +56,6 @@ final class AdministrateurFactory extends ModelFactory
             'password' => '1234',
             'prenom' => $firstname,
         ];
-    }
-    protected function normalizeName(string $normalize): string
-    {
-        return str_replace(' ', '_', $this->transliterator->transliterate(mb_strtolower($normalize)));
     }
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#initialization
