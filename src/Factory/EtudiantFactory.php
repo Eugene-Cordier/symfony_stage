@@ -29,6 +29,7 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class EtudiantFactory extends ModelFactory
 {
+    private \Transliterator $transliterator;
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
