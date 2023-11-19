@@ -56,9 +56,9 @@ final class EtudiantFactory extends ModelFactory
         return [
             'email' => $email,
             'login' => $login,
-            'nom' => $firstname,
+            'nom' => $lastname,
             'password' => '1234',
-            'prenom' => $lastname,
+            'prenom' => $firstname,
         ];
     }
     protected function normalizeName(string $normalize): string
