@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PosteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -28,6 +30,22 @@ class Poste
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
+
+    #[ORM\ManyToMany(targetEntity: Etudiant::class, mappedBy: 'postes')]
+    private Collection $etudiants;
+
+    #[ORM\ManyToOne(inversedBy: 'postes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Tag $tag = null;
+
+    #[ORM\ManyToOne(inversedBy: 'postes')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Entreprise $entreprise = null;
+
+    public function __construct()
+    {
+        $this->etudiants = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -97,6 +115,57 @@ class Poste
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Etudiant>
+     */
+    public function getEtudiants(): Collection
+    {
+        return $this->etudiants;
+    }
+
+    public function addEtudiant(Etudiant $etudiant): static
+    {
+        if (!$this->etudiants->contains($etudiant)) {
+            $this->etudiants->add($etudiant);
+            $etudiant->addPoste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtudiant(Etudiant $etudiant): static
+    {
+        if ($this->etudiants->removeElement($etudiant)) {
+            $etudiant->removePoste($this);
+        }
+
+        return $this;
+    }
+
+    public function getTag(): ?Tag
+    {
+        return $this->tag;
+    }
+
+    public function setTag(?Tag $tag): static
+    {
+        $this->tag = $tag;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $entreprise): static
+    {
+        $this->entreprise = $entreprise;
 
         return $this;
     }
