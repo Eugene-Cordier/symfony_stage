@@ -29,7 +29,6 @@ use Zenstruck\Foundry\RepositoryProxy;
  */
 final class EtudiantFactory extends ModelFactory
 {
-    private \Transliterator $transliterator;
     /**
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#factories-as-services
      *
@@ -38,7 +37,6 @@ final class EtudiantFactory extends ModelFactory
     public function __construct()
     {
         parent::__construct();
-
     }
 
     /**
@@ -48,11 +46,11 @@ final class EtudiantFactory extends ModelFactory
      */
     protected function getDefaults(): array
     {
-        $this->transliterator = \Transliterator::create('Any-Lower; Latin-ASCII');
+
         $firstname = self::faker()->firstName();
         $lastname = self::faker()->lastName();
         $email = $this->normalizeName($firstname).'.'.$this->normalizeName($lastname).'@'.self::faker()->domainName();
-        $login = $firstname.'_'.$firstname;
+        $login = $lastname.'_'.$firstname;
         return [
             'email' => $email,
             'login' => $login,
@@ -63,7 +61,7 @@ final class EtudiantFactory extends ModelFactory
     }
     protected function normalizeName(string $normalize): string
     {
-        return str_replace(' ', '_', $this->transliterator->transliterate(mb_strtolower($normalize)));
+        return str_replace(' ', '_', mb_strtolower($normalize));
     }
 
 

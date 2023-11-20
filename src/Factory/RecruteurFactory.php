@@ -48,7 +48,7 @@ final class RecruteurFactory extends ModelFactory
     {
         $firstname = self::faker()->firstName();
         $lastname = self::faker()->lastName();
-        $login = $firstname.'_'.$firstname;
+        $login = $lastname.'_'.$firstname;
         return [
             'entreprise' => null,
             'login' => $login,

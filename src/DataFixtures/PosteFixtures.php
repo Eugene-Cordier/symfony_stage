@@ -6,16 +6,17 @@ use App\Factory\EntrepriseFactory;
 use App\Factory\PosteFactory;
 use App\Factory\TagFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 ;
 
-class PosteFixtures extends Fixture
+class PosteFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
         PosteFactory::createMany(30, function () {
             return [
-                'category' => EntrepriseFactory::random(),
+                'entreprise' => EntrepriseFactory::random(),
                 'tag' => TagFactory::random(),
             ];
         });
@@ -23,7 +24,6 @@ class PosteFixtures extends Fixture
     public function getDependencies(): array
     {
         return [
-            EntrepriseFixtures::class,
             TagFixtures::class,
         ];
 

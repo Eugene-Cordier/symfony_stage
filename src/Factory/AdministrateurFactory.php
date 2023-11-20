@@ -49,7 +49,7 @@ final class AdministrateurFactory extends ModelFactory
     {
         $firstname = self::faker()->firstName();
         $lastname = self::faker()->lastName();
-        $login = $firstname.'_'.$firstname;
+        $login = $lastname.'_'.$firstname;
         return [
             'login' => $login,
             'nom' => $lastname,

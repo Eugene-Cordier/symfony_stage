@@ -47,7 +47,7 @@ final class EntrepriseFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'addresse' => self::faker()->address(),
+            'addresse' => self::faker()->city(),
             'nom' => self::faker()->word(),
         ];
     }

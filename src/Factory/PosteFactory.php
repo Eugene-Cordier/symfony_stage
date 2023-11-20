@@ -46,12 +46,18 @@ final class PosteFactory extends ModelFactory
      */
     protected function getDefaults(): array
     {
+        $label = "stage";
+        if(random_int(0,1) == 1)
+        {
+            $label = "alternance";
+        }
+
         return [
             'date_deb' => self::faker()->dateTime(),
             'description' => self::faker()->text(255),
             'entreprise' => null,
-            'label' => self::faker()->word(),
-            'lieu' => self::faker()->address(),
+            'label' => $label,
+            'lieu' => self::faker()->city(),
             'tag' => null,
         ];
     }
