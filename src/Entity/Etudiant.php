@@ -3,12 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\EtudiantRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: EtudiantRepository::class)]
-class Etudiant
+#[UniqueEntity(fields: ['email'], message: 'Il y a déja un compte avec cette adresse email')]
+class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,8 +20,8 @@ class Etudiant
     #[ORM\Column(length: 30)]
     private ?string $login = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $password = null;
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
@@ -27,20 +29,27 @@ class Etudiant
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $email = null;
-
-    #[ORM\ManyToMany(targetEntity: Poste::class, inversedBy: 'etudiants')]
-    private Collection $postes;
-
-    public function __construct()
-    {
-        $this->postes = new ArrayCollection();
-    }
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
     }
 
     public function getLogin(): ?string
@@ -51,18 +60,6 @@ class Etudiant
     public function setLogin(string $login): static
     {
         $this->login = $login;
-
-        return $this;
-    }
-
-    public function getPassword(): ?string
-    {
-        return $this->password;
-    }
-
-    public function setPassword(string $password): static
-    {
-        $this->password = $password;
 
         return $this;
     }
@@ -91,39 +88,57 @@ class Etudiant
         return $this;
     }
 
-    public function getEmail(): ?string
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->email;
+        return (string) $this->email;
     }
 
-    public function setEmail(string $email): static
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->email = $email;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
     /**
-     * @return Collection<int, Poste>
+     * @see PasswordAuthenticatedUserInterface
      */
-    public function getPostes(): Collection
+    public function getPassword(): string
     {
-        return $this->postes;
+        return $this->password;
     }
 
-    public function addPoste(Poste $poste): static
+    public function setPassword(string $password): static
     {
-        if (!$this->postes->contains($poste)) {
-            $this->postes->add($poste);
-        }
+        $this->password = $password;
 
         return $this;
     }
 
-    public function removePoste(Poste $poste): static
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
     {
-        $this->postes->removeElement($poste);
-
-        return $this;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
