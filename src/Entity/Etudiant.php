@@ -23,9 +23,6 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
-    #[ORM\Column(type: 'json')]
-    private array $roles = [];
-
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
@@ -90,7 +87,6 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
 
     /**
      * A visual identifier that represents this user.
