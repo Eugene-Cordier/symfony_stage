@@ -20,12 +20,12 @@ security:
             logout:
                 path: app_logout
                 # where to redirect after logout
-                # target: app_any_route
+                target: app_site
 
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800
-                path: /
+                path: app_site
                 always_remember_me: true
 
             # activate different ways to authenticate
