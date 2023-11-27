@@ -21,28 +21,42 @@ class PosteRepository extends ServiceEntityRepository
         parent::__construct($registry, Poste::class);
     }
 
-//    /**
-//     * @return Poste[] Returns an array of Poste objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /* @return Poste[] */
+    public function search(string $search = ''): array
+    {
+        $qb = $this->createQueryBuilder('p');
+        if (!empty($search)) {
+            $qb->where('p.label LIKE :search')
+                ->setParameter('search', '%'.$search.'%')
+            ;
+        }
+        $query = $qb->getQuery();
 
-//    public function findOneBySomeField($value): ?Poste
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return $query->execute();
+    }
+
+    //    /**
+    //     * @return Poste[] Returns an array of Poste objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('p.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Poste
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
