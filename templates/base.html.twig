@@ -16,8 +16,8 @@
     <body>
         <nav class="navbar navbar-expand-lg bg-light">
             <figure>
-                <img class="nav_logo_mobile" src="{{ asset('images/logo_alt.png') }}">
-                <img class="nav_logo" src="{{ asset('images/logo_2.png') }}">
+                <img class="nav_logo_mobile" src="{{ asset('/images/logo_alt.png') }}" alt="logo mobile">
+                <img class="nav_logo" src="{{ asset('/images/logo_2.png') }}" alt="logo normal">
                 <figcaption>ApprentiStage</figcaption>
             </figure>
             <ul>
@@ -33,7 +33,7 @@
             </ul>
             <form role="search" class="searchbar" action="{{ path('app_poste') }}">
                 <input name="search" type="search" placeholder="Rechercher" aria-label="Search">
-                <button class="search_button" type="submit"><img src="{{ asset('images/search.png') }}"></button>
+                <button class="search_button" type="submit"><img src="{{ asset('/images/search.png') }}"  alt="bouton recherche"></button>
             </form>
         </nav>
         {% block body %}
