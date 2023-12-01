@@ -59,6 +59,7 @@ final class PosteFactory extends ModelFactory
             'label' => $label,
             'lieu' => self::faker()->city(),
             'tag' => null,
+            'date_fin' => self::faker()->dateTime()
         ];
     }
 
