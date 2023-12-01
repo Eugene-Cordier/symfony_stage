@@ -71,7 +71,26 @@ input {
     flex: 1;
     height: 50%;
 }
-
+.index{
+    display: flex;
+    justify-content: space-around;
+}
+.index-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.index-area-button
+{
+    display: flex;
+    flex-direction: row;
+}
+.index-column>p{
+    font-size:60px;
+}
+.index-area-button>button{
+    flex:1;
+}
 @media screen and (min-width: 600px) {
     nav {
         flex-direction: row;
