@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Offres d'emploi basées sur votre recherche{% endblock %}
+
+{% block body %}
+    <div>
+        <ul class="alternance">
+            {% for poste in postes%}
+                {% if poste.label=="alternance" %}
+                    <ul>
+                        <li>{{ poste.label }}</li>
+                        <li>{{ poste.tag.nom }}</li>
+                        <li>{{ poste.lieu }}</li>
+                        <li>{{ poste.entreprise.nom }}</li>
+                        <li>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
+                        <li>{{ poste.description }}</li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div>
+        <ul class="stage">
+        {% for poste in postes%}
+            {% if poste.label=="stage" %}
+            <ul>
+                <li>{{ poste.label }}</li>
+                <li>{{ poste.tag.nom }}</li>
+                <li>{{ poste.lieu }}</li>
+                <li>{{ poste.entreprise.nom }}</li>
+                <li>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
+                <li>{{ poste.description }}</li>
+            </ul>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
