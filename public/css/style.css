@@ -137,6 +137,12 @@ input {
         height: 40px;
         background-color: #3E48CC;
     }
+    .body_form{
+        margin : 200px;
+    }
+    .form{
+        margin : 200px;
+    }
 }
 
 @media screen and (min-width: 900px) {
