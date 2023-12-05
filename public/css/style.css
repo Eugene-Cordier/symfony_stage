@@ -47,6 +47,35 @@ input {
     border-radius: 20px;
     padding: 0 10px;
 }
+header{
+    display: flex;
+    background-color: #03bde4;
+    padding: 15px 10px;
+    justify-content: space-between;
+}
+.socialnetwork{
+    display: flex;
+    align-items: center;
+}
+header img{
+    width: 45px;
+}
+.phone{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.phone img{
+    width: 35px;
+}
+.phone p{
+    font-family: 'Archivo Black';
+    margin-bottom: 0;
+}
+.phone\&login{
+    display: flex;
+}
+
 
 .searchbar {
     width: 100%;
@@ -168,4 +197,27 @@ input {
         width: 50px;
         height: 50px;
     }
+    header{
+        display: flex;
+        background-color: #03bde4;
+        justify-content: space-between;
+        padding: 15px 160px;
+    }
+    header img{
+        width: 45px;
+    }
+    .phone{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    .phone p{
+        font-family: 'Archivo Black';
+        margin-bottom: 0;
+    }
+    .phone\&login{
+        display: flex;
+        gap: 40px;
+    }
+
 }
