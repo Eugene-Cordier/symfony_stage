@@ -55,14 +55,16 @@ final class PosteFactory extends ModelFactory
         }
         $datedeb = self::faker()->dateTimeBetween('+3 month', '+1 year');
         $datefin = $datedeb->format('Y-m-d H:i:s')." +{$r} days";
+        $entreprise=EntrepriseFactory::createOne();
+        $tag=TagFactory::createOne();
 
         return [
             'date_deb' => $datedeb,
             'description' => self::faker()->text(255),
-            'entreprise' => null,
+            'entreprise' => $entreprise,
             'label' => $label,
             'lieu' => self::faker()->city(),
-            'tag' => null,
+            'tag' => $tag,
             'date_fin' => new \DateTime($datefin),
         ];
     }
