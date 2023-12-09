@@ -52,7 +52,7 @@
             </ul>
             <form role="search" class="searchbar" action="{{ path('app_poste') }}">
                 <input name="search" type="search" placeholder="Rechercher" aria-label="Search">
-                <button class="search_button" type="submit"><img src="{{ asset('/images/search.png') }}"  alt="bouton recherche"></button>
+                <button name='search-button' class="search_button" type="submit"><img src="{{ asset('/images/search.png') }}"  alt="bouton recherche"></button>
             </form>
         </nav>
         {% block body %}
