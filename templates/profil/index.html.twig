@@ -4,4 +4,49 @@
 
 {% block body %}
     <h1>Profil de {{ app.user.nom }} {{ app.user.prenom }}</h1>
+    <div class="info-etudiant">
+        <h3>Mes informations : </h3>
+        <ul>
+            <li>Nom : {{ app.user.nom }}</li>
+            <li>Prénom : {{ app.user.prenom }}</li>
+            <li>Login : {{ app.user.login }}</li>
+            <li>Email : {{ app.user.email }}</li>
+        </ul>
+    </div>
+    <div>
+        <button><a href="{{ path('app_logout') }}">Se déconnecter</a></button>
+    </div>
+    <div class="poste-etudiant">
+        <h3>Vous êtes inscrits à : </h3>
+        <div class="stage-alternance">
+            <div class="alternance">
+            {% for poste in app.user.postes %}
+                {% if poste.label == 'alternance' %}
+                    <div class="infoposte">
+                        {#{{ poste.entreprise.logo }}#}
+                        <div class="texteinfoposte">
+                            <p>{{ poste.entreprise.nom }}</p>
+                            <p>{{ poste.lieu }}</p>
+                            <p>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+            <div class="stage">
+            {% for poste in app.user.postes %}
+                {% if poste.label == 'stage' %}
+                    <div class="infoposte">
+                        {#{{ poste.entreprise.logo }}#}
+                        <div class="texteinfoposte">
+                            <p>{{ poste.entreprise.nom }}</p>
+                            <p>{{ poste.lieu }}</p>
+                            <p>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
