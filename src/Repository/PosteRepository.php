@@ -26,8 +26,14 @@ class PosteRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('p');
         if (!empty($search)) {
-            $qb->where('t.nom LIKE :search')
+            $qb->addSelect('t')
+                ->addSelect('e')
+                ->where('t.nom LIKE :search')
+                ->orWhere('e.nom LIKE :search')
+                ->orWhere('p.lieu LIKE :search')
+                ->orWhere('p.label LIKE :search')
                 ->leftJoin('p.tag', 't')
+                ->leftJoin('p.entreprise', 'e')
                 ->setParameter('search', '%'.$search.'%')
             ;
         }
