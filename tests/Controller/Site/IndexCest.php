@@ -15,4 +15,9 @@ class IndexCest
     public function tryToTest(ControllerTester $I)
     {
     }
+    public function testPageIndex(ControllerTester $I)
+    {
+        $I->amOnPage('/site');
+        $I->seeResponseCodeIsSuccessful();
+    }
 }
