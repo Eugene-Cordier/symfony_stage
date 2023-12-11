@@ -1,0 +1,10 @@
+actor: FunctionalTester
+suite_namespace: App\Tests\Functional
+modules:
+    # enable helpers as array
+    enabled:
+        - Asserts:
+        - Symfony:
+              app_path: 'src'
+              environment: 'test'
+              mailer: 'symfony_mailer'
