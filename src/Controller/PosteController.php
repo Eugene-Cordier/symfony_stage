@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Poste;
 use App\Repository\PosteRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,5 +21,13 @@ class PosteController extends AbstractController
             'postes' => $postes,
             'search' => $search,
         ]);
+    }
+    #[Route('/poste/{id]',name: 'app_poste_info', requirements: ['contactId' => '\d+'])]
+    public function show(Poste $poste): Response
+    {
+        return $this->render(
+            'poste/show.html.twig',
+            ['poste'=>$poste]
+        );
     }
 }
