@@ -22,12 +22,13 @@ class PosteController extends AbstractController
             'search' => $search,
         ]);
     }
-    #[Route('/poste/{id]',name: 'app_poste_info', requirements: ['contactId' => '\d+'])]
+
+    #[Route('/poste/{id}', name: 'app_poste_info', requirements: ['id' => '\d+'])]
     public function show(Poste $poste): Response
     {
         return $this->render(
             'poste/show.html.twig',
-            ['poste'=>$poste]
+            ['poste' => $poste]
         );
     }
 }

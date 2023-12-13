@@ -14,28 +14,15 @@
         <dd>{{ poste.lieu }}</dd>
 
         <dt>Date de début:</dt>
-        <dd>{{ poste.date_deb|date('d/m/Y') }}</dd>
+        <dd>{{ poste.datedeb|date('d/m/Y') }}</dd>
 
-        {% if poste.date_fin is not null %}
+        {% if poste.datefin is not null %}
             <dt>Date de fin:</dt>
-            <dd>{{ poste.date_fin|date('d/m/Y') }}</dd>
+            <dd>{{ poste.datefin|date('d/m/Y') }}</dd>
         {% endif %}
 
         <dt>Description:</dt>
         <dd>{{ poste.description }}</dd>
-
-        <dt>Étudiants:</dt>
-        <dd>
-            {% if poste.etudiants is not empty %}
-                <ul>
-                    {% for etudiant in poste.etudiants %}
-                        <li>{{ etudiant.nom }} {{ etudiant.prenom }}</li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                Aucun étudiant n'a postulé pour ce poste.
-            {% endif %}
-        </dd>
 
         <dt>Tag:</dt>
         <dd>{{ poste.tag.nom }}</dd>
