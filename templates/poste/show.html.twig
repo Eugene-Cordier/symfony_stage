@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ poste.label }}{% endblock %}
+
+{% block body %}
+    <h1>{{ poste.label }}</h1>
+
+    <dl>
+        <dt>Lieu:</dt>
+        <dd>{{ poste.lieu }}</dd>
+
+        <dt>Date de début:</dt>
+        <dd>{{ poste.date_deb|date('d/m/Y') }}</dd>
+
+        {% if poste.date_fin is not null %}
+            <dt>Date de fin:</dt>
+            <dd>{{ poste.date_fin|date('d/m/Y') }}</dd>
+        {% endif %}
+
+        <dt>Description:</dt>
+        <dd>{{ poste.description }}</dd>
+
+        <dt>Étudiants:</dt>
+        <dd>
+            {% if poste.etudiants is not empty %}
+                <ul>
+                    {% for etudiant in poste.etudiants %}
+                        <li>{{ etudiant.nom }} {{ etudiant.prenom }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                Aucun étudiant n'a postulé pour ce poste.
+            {% endif %}
+        </dd>
+
+        <dt>Tag:</dt>
+        <dd>{{ poste.tag.nom }}</dd>
+
+        <dt>Entreprise:</dt>
+        <dd>{{ poste.entreprise.nom }}</dd>
+    </dl>
+{% endblock %}
