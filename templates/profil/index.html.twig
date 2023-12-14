@@ -23,7 +23,7 @@
                     {% for poste in app.user.postes %}
                         {% if poste.label == 'alternance' %}
                             <a href="{{ path('app_poste_info',{'id': poste.id})}}">
-                                <div class="infoposte">
+                                <div class="infoposte" title="{{ poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
                                         <p>{{ poste.entreprise.nom }}</p>
@@ -39,7 +39,7 @@
                     {% for poste in app.user.postes %}
                         {% if poste.label == 'stage' %}
                             <a href="{{ path('app_poste_info',{'id': poste.id}) }}">
-                                <div class="infoposte">
+                                <div class="infoposte" title="{{ poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
                                         <p>{{ poste.entreprise.nom }}</p>
