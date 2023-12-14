@@ -7,7 +7,7 @@
         <ul class="alternance">
             {% for poste in postes%}
                 {% if poste.label=="alternance" %}
-                    <ul>
+                    <ul class="poste-liste">
                         <li>{{ poste.label }}</li>
                         <li>{{ poste.tag.nom }}</li>
                         <li>{{ poste.lieu }}</li>
@@ -23,7 +23,7 @@
         <ul class="stage">
         {% for poste in postes%}
             {% if poste.label=="stage" %}
-            <ul>
+            <ul class="poste-liste">
                 <li>{{ poste.label }}</li>
                 <li>{{ poste.tag.nom }}</li>
                 <li>{{ poste.lieu }}</li>
