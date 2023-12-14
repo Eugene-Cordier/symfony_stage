@@ -146,6 +146,38 @@ height: 100%;
 html{
 height: 100%;
 }
+
+.profil{
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    padding-bottom: 25px;
+    align-items: center;
+}
+.infoposte{
+    border: solid black 2px;
+    border-radius: 10px;
+    padding: 5px;
+    margin-top: 15px;
+}
+.stage-alternance{
+    display: flex;
+    flex-direction: column;
+}
+.info-etudiant{
+    display: flex;
+    flex-direction: column;
+    margin: 15px;
+    align-items: center;
+}
+hr{
+    width: 70%;
+}
+.texteinfoposte p:last-child{
+    margin-bottom: 0;
+}
+
+
 @media screen and (min-width: 600px) {
 .navbar {
     flex-direction: row;
