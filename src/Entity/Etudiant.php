@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EtudiantRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -34,6 +36,14 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     private ?string $password = null;
+
+    #[ORM\ManyToMany(targetEntity: Poste::class)]
+    private Collection $postes;
+
+    public function __construct()
+    {
+        $this->postes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -135,5 +145,29 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * @return Collection<int, Poste>
+     */
+    public function getPostes(): Collection
+    {
+        return $this->postes;
+    }
+
+    public function addPoste(Poste $poste): static
+    {
+        if (!$this->postes->contains($poste)) {
+            $this->postes->add($poste);
+        }
+
+        return $this;
+    }
+
+    public function removePoste(Poste $poste): static
+    {
+        $this->postes->removeElement($poste);
+
+        return $this;
     }
 }
