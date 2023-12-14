@@ -5,20 +5,29 @@
 {% block body %}
     <div class="body_form">
         <div class="form">
+            <a href="{{ path('app_site') }}" class="form_link transparent">&lt; Accueil</a>
             <h1>Inscription</h1>
+            <img src="{{ asset('/images/logo_2.png') }}">
 
             {{ form_errors(registrationForm) }}
 
             {{ form_start(registrationForm) }}
-                {{ form_row(registrationForm.login) }}
-                {{ form_row(registrationForm.nom) }}
-                {{ form_row(registrationForm.prenom) }}
-                {{ form_row(registrationForm.email) }}
+                <div class="form_container">
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.login) }}
+                </div>
+                <div class="form_container">
+                    {{ form_row(registrationForm.nom) }}
+                    {{ form_row(registrationForm.prenom) }}
+                </div>
                 {{ form_row(registrationForm.plainPassword, {
                     label: 'Mot de passe'
                 }) }}
 
                 <button type="submit" class="btn">S'inscrire</button>
+                <div class="mb-3">
+                    <a href="{{ path('app_login') }}" class="form_link">Se connecter</a>
+                </div>
             {{ form_end(registrationForm) }}
         </div>
     </div>

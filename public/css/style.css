@@ -36,6 +36,11 @@ a{
     --bs-link-hover-color: black;
 }
 
+h1, h2, .btn {
+    text-align: center;
+    font-family: "Archivo Black";
+}
+
 .nav_logo {
     height: 150px;
     display: none;
@@ -90,6 +95,7 @@ header img{
     width: 100%;
     padding: 20px;
     align-items: center;
+    flex-direction: row;
 }
 
 .search_button {
@@ -229,6 +235,69 @@ hr{
     display: none;
 }
 
+.body_form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    width: 90%;
+    max-width: 800px;
+    background-color: #EFEFEF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+form .mb-3 {
+    width: 90%;
+    max-width: 570px;
+}
+
+.form_link {
+    text-decoration: underline;
+    width: 100%;
+    text-align: left;
+}
+
+.transparent {
+    opacity: 70%;
+}
+
+.body_form .btn {
+    background-color: #03bde4;
+    border-color: #03bde4;
+    width: 90%;
+    color: white;
+    max-width: 570px;
+}
+
+.body_form .btn:hover {
+    background-color: #3E48CC;
+    border-color: #3E48CC;
+}
+
+.form_container > .mb-3 {
+    width: 100%;
+}
+
+.form_container {
+    width: 90%;
+    max-width: 570px;
+}
+
 @media screen and (min-width: 600px) {
     .navbar {
         flex-direction: row;
@@ -276,8 +345,22 @@ hr{
         background-color: #3E48CC;
     }
 
-    .form{
-        margin : 200px;
+    .form-control {
+        height: 60px;
+    }
+
+    .form {
+        height: 900px;
+        justify-content: space-evenly;
+    }
+
+    .form .btn {
+        height: 60px;
+    }
+
+    .form_container {
+        display: flex;
+        gap: 20px;
     }
 }
 
