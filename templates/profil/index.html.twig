@@ -20,6 +20,7 @@
             <h3>Vous êtes inscrits à : </h3>
             <div class="stage-alternance">
                 <div class="alternance">
+                    <h4>Alternances : </h4>
                     {% for poste in app.user.postes %}
                         {% if poste.label == 'alternance' %}
                             <a href="{{ path('app_poste_info',{'id': poste.id})}}">
@@ -35,7 +36,9 @@
                         {% endif %}
                     {% endfor %}
                 </div>
+                <div class="vr"></div>
                 <div class="stage">
+                    <h4>Stages : </h4>
                     {% for poste in app.user.postes %}
                         {% if poste.label == 'stage' %}
                             <a href="{{ path('app_poste_info',{'id': poste.id}) }}">
