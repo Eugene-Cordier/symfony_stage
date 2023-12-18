@@ -43,6 +43,7 @@ final class PosteFactory extends ModelFactory
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      *
      * @todo add your default values here
+     *
      * @throws \Exception
      */
     protected function getDefaults(): array
@@ -55,8 +56,8 @@ final class PosteFactory extends ModelFactory
         }
         $datedeb = self::faker()->dateTimeBetween('+3 month', '+1 year');
         $datefin = $datedeb->format('Y-m-d H:i:s')." +{$r} days";
-        $entreprise=EntrepriseFactory::createOne();
-        $tag=TagFactory::createOne();
+        $entreprise = EntrepriseFactory::createOne();
+        $tag = TagFactory::createOne();
 
         return [
             'date_deb' => $datedeb,
