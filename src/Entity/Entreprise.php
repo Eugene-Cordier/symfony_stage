@@ -18,7 +18,7 @@ class Entreprise
     #[ORM\Column(length: 30)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 30)]
+    #[ORM\Column(length: 255)]
     private ?string $addresse = null;
 
     #[ORM\OneToMany(mappedBy: 'entreprise', targetEntity: Poste::class)]
