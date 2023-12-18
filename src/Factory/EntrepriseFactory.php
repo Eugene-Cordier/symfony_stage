@@ -11,21 +11,21 @@ use Zenstruck\Foundry\RepositoryProxy;
 /**
  * @extends ModelFactory<Entreprise>
  *
- * @method        Entreprise|Proxy create(array|callable $attributes = [])
- * @method static Entreprise|Proxy createOne(array $attributes = [])
- * @method static Entreprise|Proxy find(object|array|mixed $criteria)
- * @method static Entreprise|Proxy findOrCreate(array $attributes)
- * @method static Entreprise|Proxy first(string $sortedField = 'id')
- * @method static Entreprise|Proxy last(string $sortedField = 'id')
- * @method static Entreprise|Proxy random(array $attributes = [])
- * @method static Entreprise|Proxy randomOrCreate(array $attributes = [])
+ * @method        Entreprise|Proxy                     create(array|callable $attributes = [])
+ * @method static Entreprise|Proxy                     createOne(array $attributes = [])
+ * @method static Entreprise|Proxy                     find(object|array|mixed $criteria)
+ * @method static Entreprise|Proxy                     findOrCreate(array $attributes)
+ * @method static Entreprise|Proxy                     first(string $sortedField = 'id')
+ * @method static Entreprise|Proxy                     last(string $sortedField = 'id')
+ * @method static Entreprise|Proxy                     random(array $attributes = [])
+ * @method static Entreprise|Proxy                     randomOrCreate(array $attributes = [])
  * @method static EntrepriseRepository|RepositoryProxy repository()
- * @method static Entreprise[]|Proxy[] all()
- * @method static Entreprise[]|Proxy[] createMany(int $number, array|callable $attributes = [])
- * @method static Entreprise[]|Proxy[] createSequence(iterable|callable $sequence)
- * @method static Entreprise[]|Proxy[] findBy(array $attributes)
- * @method static Entreprise[]|Proxy[] randomRange(int $min, int $max, array $attributes = [])
- * @method static Entreprise[]|Proxy[] randomSet(int $number, array $attributes = [])
+ * @method static Entreprise[]|Proxy[]                 all()
+ * @method static Entreprise[]|Proxy[]                 createMany(int $number, array|callable $attributes = [])
+ * @method static Entreprise[]|Proxy[]                 createSequence(iterable|callable $sequence)
+ * @method static Entreprise[]|Proxy[]                 findBy(array $attributes)
+ * @method static Entreprise[]|Proxy[]                 randomRange(int $min, int $max, array $attributes = [])
+ * @method static Entreprise[]|Proxy[]                 randomSet(int $number, array $attributes = [])
  */
 final class EntrepriseFactory extends ModelFactory
 {
@@ -46,9 +46,11 @@ final class EntrepriseFactory extends ModelFactory
      */
     protected function getDefaults(): array
     {
+        $adresse = strval(self::faker()->numberBetween(1, 35)).' rue de '.self::faker()->word().' '.self::faker()->city();
+
         return [
-            'addresse' => self::faker()->city(),
-            'nom' => self::faker()->word(),
+            'addresse' => $adresse,
+            'nom' => mb_convert_case(self::faker()->word(), MB_CASE_TITLE),
         ];
     }
 

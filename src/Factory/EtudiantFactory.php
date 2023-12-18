@@ -41,6 +41,7 @@ final class EtudiantFactory extends ModelFactory
     {
         parent::__construct();
         $this->passwordHasher = $passwordHasher;
+        $this->transliterator = transliterator_create('Any-Latin; Latin-ASCII');
     }
 
     /**
@@ -53,20 +54,29 @@ final class EtudiantFactory extends ModelFactory
         $firstname = self::faker()->firstName();
         $lastname = self::faker()->lastName();
         $email = $this->normalizeName($firstname).'.'.$this->normalizeName($lastname).'@'.self::faker()->domainName();
-        $login = $lastname.'_'.$firstname;
+        $login = $this->normalizeName($lastname.'_'.$firstname);
+        // mot de passe tel que 5 int + un mot + 5int
+        $password = '';
+        for ($i = 0; $i < 5; ++$i) {
+            $password .= self::faker()->randomDigit();
+        }
+        $password .= self::faker()->randomElement(['A', 'Z', 'h', 'm', 'q', 'Y', 'W', 'S', 'u', 'B'], 5);
+        for ($j = 0; $j < 5; ++$j) {
+            $password .= self::faker()->randomDigit();
+        }
 
         return [
             'email' => $email,
             'login' => $login,
             'nom' => $lastname,
-            'password' => '1234',
+            'password' => $password,
             'prenom' => $firstname,
         ];
     }
 
     protected function normalizeName(string $normalize): string
     {
-        return str_replace(' ', '_', mb_strtolower($normalize));
+        return str_replace(' ', '_', mb_strtolower(transliterator_transliterate($this->transliterator, $normalize, 0, -1)));
     }
 
     protected function initialize(): self

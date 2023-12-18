@@ -7,15 +7,16 @@ use App\Factory\RecruteurFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-;
 
 class RecruteurFixtures extends Fixture implements DependentFixtureInterface
 {
+    // tel email 90%
     public function load(ObjectManager $manager): void
     {
         RecruteurFactory::createMany(30, function () {
             return [
                 'entreprise' => EntrepriseFactory::random(),
+                'telephone' => RecruteurFactory::faker()->boolean(60) ? RecruteurFactory::faker()->phoneNumber() : null,
             ];
         });
     }
@@ -25,6 +26,5 @@ class RecruteurFixtures extends Fixture implements DependentFixtureInterface
         return [
             EntrepriseFixtures::class,
         ];
-
     }
 }

@@ -3,18 +3,36 @@
     "nom": "PHP"
   },
   {
+    "description": "PHP est un langage de programmation côté serveur open source, conçu pour le développement web. Il offre une syntaxe simple et flexible pour créer des sites dynamiques. PHP s'intègre facilement avec des bases de données, prend en charge de nombreuses bibliothèques, et permet la création d'applications web robustes et interactives."
+  },
+  {
     "nom": "DEV_WEB"
+  },
+  {
+    "description": "Le développement web englobe la création d'applications et de sites internet. Il intègre HTML, CSS, JavaScript et d'autres technologies pour concevoir des interfaces utilisateur interactives et esthétiques. Les développeurs web assurent la fonctionnalité, la convivialité et la performance des applications en collaboration avec des designers et des équipes backend."
   },
   {
     "nom": "commnunication"
   },
   {
+    "description": "Rejoingnez-nous pour acquérir une expérience dans la communication, vous participerez à la promotion d'entreprises à travers divers moyens comme les affiches promotionnelles"
+  },
+  {
     "nom": "logistique"
+  },
+  {
+    "description": "Stagiaire logistique passionné! Prêt à optimiser les opérations, améliorer l'efficacité des chaînes d'approvisionnement et contribuer à des solutions innovantes. Maîtrise des outils logistiques et esprit analytique. Rejoignez-nous pour une immersion pratique dans le monde de la logistique!"
   },
   {
     "nom": "Médical"
   },
   {
+    "description": "Engagé à contribuer au secteur de la santé par l'analyse de données, la recherche et le soutien opérationnel. Prêt à mettre en œuvre mes compétences pour des solutions innovantes. Rejoignez-nous pour une expérience enrichissante dans le domaine médical!"
+  },
+  {
     "nom": "Commerçant"
+  },
+  {
+    "description": "Prêt à explorer les rouages du secteur commercial, développer des compétences en vente, marketing et gestion. Motivé pour contribuer à des projets stratégiques et apprendre au cœur de l'action. Rejoignez-nous pour une immersion dynamique dans le monde du commerce!"
   }
 ]

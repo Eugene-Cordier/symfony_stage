@@ -28,7 +28,7 @@ class Poste
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date_fin = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 1000)]
     private ?string $description = null;
 
     #[ORM\ManyToMany(targetEntity: Etudiant::class, mappedBy: 'postes')]
