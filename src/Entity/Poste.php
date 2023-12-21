@@ -42,9 +42,13 @@ class Poste
     #[ORM\JoinColumn(nullable: false)]
     private ?Entreprise $entreprise = null;
 
+    #[ORM\OneToMany(mappedBy: 'Poste', targetEntity: EtudiantPoste::class)]
+    private Collection $etudiantPostes;
+
     public function __construct()
     {
         $this->etudiants = new ArrayCollection();
+        $this->etudiantPostes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -166,6 +170,36 @@ class Poste
     public function setEntreprise(?Entreprise $entreprise): static
     {
         $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EtudiantPoste>
+     */
+    public function getEtudiantPostes(): Collection
+    {
+        return $this->etudiantPostes;
+    }
+
+    public function addEtudiantPoste(EtudiantPoste $etudiantPoste): static
+    {
+        if (!$this->etudiantPostes->contains($etudiantPoste)) {
+            $this->etudiantPostes->add($etudiantPoste);
+            $etudiantPoste->setPoste($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtudiantPoste(EtudiantPoste $etudiantPoste): static
+    {
+        if ($this->etudiantPostes->removeElement($etudiantPoste)) {
+            // set the owning side to null (unless already changed)
+            if ($etudiantPoste->getPoste() === $this) {
+                $etudiantPoste->setPoste(null);
+            }
+        }
 
         return $this;
     }

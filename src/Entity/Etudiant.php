@@ -40,9 +40,13 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Poste::class)]
     private Collection $postes;
 
+    #[ORM\OneToMany(mappedBy: 'etudiant', targetEntity: EtudiantPoste::class)]
+    private Collection $etudiantPostes;
+
     public function __construct()
     {
         $this->postes = new ArrayCollection();
+        $this->etudiantPostes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,6 +171,36 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
     public function removePoste(Poste $poste): static
     {
         $this->postes->removeElement($poste);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, EtudiantPoste>
+     */
+    public function getEtudiantPostes(): Collection
+    {
+        return $this->etudiantPostes;
+    }
+
+    public function addEtudiantPoste(EtudiantPoste $etudiantPoste): static
+    {
+        if (!$this->etudiantPostes->contains($etudiantPoste)) {
+            $this->etudiantPostes->add($etudiantPoste);
+            $etudiantPoste->setEtudiant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeEtudiantPoste(EtudiantPoste $etudiantPoste): static
+    {
+        if ($this->etudiantPostes->removeElement($etudiantPoste)) {
+            // set the owning side to null (unless already changed)
+            if ($etudiantPoste->getEtudiant() === $this) {
+                $etudiantPoste->setEtudiant(null);
+            }
+        }
 
         return $this;
     }
