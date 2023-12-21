@@ -21,15 +21,16 @@
             <div class="stage-alternance">
                 <div class="alternance">
                     <h4>Alternances : </h4>
-                    {% for poste in app.user.postes %}
-                        {% if poste.label == 'alternance' %}
-                            <a href="{{ path('app_poste_info',{'id': poste.id})}}">
-                                <div class="infoposte" title="{{ poste.description }}">
+                    {% for postes in app.user.etudiantPostes %}
+                        {% if postes.poste.label == 'alternance' %}
+                            <a href="{{ path('app_poste_info',{'id': postes.poste.id})}}">
+                                <div class="infoposte" title="{{ postes.poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
-                                        <p>{{ poste.entreprise.nom }}</p>
-                                        <p>{{ poste.lieu }}</p>
-                                        <p>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</p>
+                                        <p>{{ postes.poste.entreprise.nom }}</p>
+                                        <p>{{ postes.poste.lieu }}</p>
+                                        <p>{{ postes.poste.datedeb|date("d/m/Y") }} - {{ postes.poste.datefin|date("d/m/Y") }}</p>
+                                        <img src="{{ postes.cv }}" alt="cv">
                                     </div>
                                 </div>
                             </a>
@@ -39,15 +40,16 @@
                 <div class="vr"></div>
                 <div class="stage">
                     <h4>Stages : </h4>
-                    {% for poste in app.user.postes %}
-                        {% if poste.label == 'stage' %}
-                            <a href="{{ path('app_poste_info',{'id': poste.id}) }}">
-                                <div class="infoposte" title="{{ poste.description }}">
+                    {% for postes in app.user.etudiantPostes %}
+                        {% if postes.poste.label == 'stage' %}
+                            <a href="{{ path('app_poste_info',{'id': postes.poste.id}) }}">
+                                <div class="infoposte" title="{{ postes.poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
-                                        <p>{{ poste.entreprise.nom }}</p>
-                                        <p>{{ poste.lieu }}</p>
-                                        <p>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</p>
+                                        <p>{{ postes.poste.entreprise.nom }}</p>
+                                        <p>{{ postes.poste.lieu }}</p>
+                                        <p>{{ postes.poste.datedeb|date("d/m/Y") }} - {{ postes.poste.datefin|date("d/m/Y") }}</p>
+                                        <img src="{{ postes.cv }}" alt="cv">
                                     </div>
                                 </div>
                             </a>
