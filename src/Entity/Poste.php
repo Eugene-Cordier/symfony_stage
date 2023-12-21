@@ -31,9 +31,6 @@ class Poste
     #[ORM\Column(length: 1000)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Etudiant::class, mappedBy: 'postes')]
-    private Collection $etudiants;
-
     #[ORM\ManyToOne(inversedBy: 'postes')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Tag $tag = null;

@@ -37,9 +37,6 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\ManyToMany(targetEntity: Poste::class)]
-    private Collection $postes;
-
     #[ORM\OneToMany(mappedBy: 'etudiant', targetEntity: EtudiantPoste::class)]
     private Collection $etudiantPostes;
 
