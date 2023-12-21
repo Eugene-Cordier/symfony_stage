@@ -48,8 +48,8 @@ final class EtudiantPosteFactory extends ModelFactory
     {
         return [
             'cv' => file_get_contents(__DIR__.'/../../public/images/model-cv.jpg'),
-            'etudiant' => EtudiantFactory::new(),
-            'poste' => PosteFactory::new(),
+            'etudiant' => EtudiantFactory::random(),
+            'poste' => PosteFactory::random(),
         ];
     }
 
