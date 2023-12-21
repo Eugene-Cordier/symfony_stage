@@ -15,7 +15,7 @@ class EtudiantPoste
     private ?int $id = null;
 
     #[ORM\Column(type: Types::BLOB)]
-    private $cv = null;
+    private ?string $cv = null;
 
     #[ORM\ManyToOne(inversedBy: 'etudiantPostes')]
     #[ORM\JoinColumn(nullable: false)]
