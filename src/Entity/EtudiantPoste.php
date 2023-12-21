@@ -15,7 +15,7 @@ class EtudiantPoste
     private ?int $id = null;
 
     #[ORM\Column(type: Types::BLOB)]
-    private ?string $cv = null;
+    private $cv;
 
     #[ORM\ManyToOne(inversedBy: 'etudiantPostes')]
     #[ORM\JoinColumn(nullable: false)]
@@ -32,7 +32,7 @@ class EtudiantPoste
 
     public function getCv()
     {
-        return $this->cv;
+        return 'data:image/jpg;base64,'.base64_encode(stream_get_contents($this->cv));
     }
 
     public function setCv($cv): static
