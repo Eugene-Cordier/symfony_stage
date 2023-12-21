@@ -47,7 +47,7 @@ final class EtudiantPosteFactory extends ModelFactory
     protected function getDefaults(): array
     {
         return [
-            'cv' => self::faker()->text(),
+            'cv' => file_get_contents(__DIR__.'/../../public/images/model-cv.jpg'),
             'etudiant' => EtudiantFactory::new(),
             'poste' => PosteFactory::new(),
         ];
@@ -59,7 +59,7 @@ final class EtudiantPosteFactory extends ModelFactory
     protected function initialize(): self
     {
         return $this
-            // ->afterInstantiate(function(EtudiantPoste $etudiantPoste): void {})
+            // ->afterInstantiate(function(EtudiantPosteFixtures $etudiantPoste): void {})
         ;
     }
 
