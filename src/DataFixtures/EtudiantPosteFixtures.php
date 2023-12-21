@@ -5,13 +5,10 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class EtudiantPoste extends Fixture
+class EtudiantPosteFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
 
-        $manager->flush();
     }
 }
