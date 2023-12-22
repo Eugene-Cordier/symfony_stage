@@ -32,6 +32,10 @@ class EtudiantPoste
 
     public function getCv()
     {
+        if (null == $this->cv) {
+            return null;
+        }
+
         return 'data:image/jpg;base64,'.base64_encode(stream_get_contents($this->cv));
     }
 
