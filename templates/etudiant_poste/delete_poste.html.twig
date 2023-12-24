@@ -1,0 +1,12 @@
+{% extends '../base.html.twig' %}
+
+{% block title %}Supprimer le poste{% endblock %}
+
+{% block body %}
+    <h1>Supprimer le poste</h1>
+
+    {{ form_start(form, {'attr': {'class': 'd-flex'}}) }}
+    {{ form_row(form.delete, {'label': 'Supprimer'}) }}
+    {{ form_row(form.cancel, {'label': 'Annuler', 'attr': {'class': 'btn-secondary'}}) }}
+    {{ form_end(form) }}
+{% endblock %}
