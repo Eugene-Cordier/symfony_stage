@@ -11,9 +11,11 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class EtudiantPosteController extends AbstractController
 {
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/etudiantPoste/{id}/delete_poste', name: 'app_etudiant_poste_delete')]
     public function deletePoste(Request $request, EtudiantPoste $etudiantPoste, EntityManagerInterface $entityManager)
     {
@@ -37,6 +39,7 @@ class EtudiantPosteController extends AbstractController
         ]);
     }
 
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/etudiantPoste/{id}/update_cv', name: 'app_etudiant_poste_update_cv')]
     public function updateCv(Request $request, EtudiantPoste $etudiantPoste, EntityManagerInterface $entityManager): Response
     {
