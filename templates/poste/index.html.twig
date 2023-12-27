@@ -1,38 +1,44 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    <link href="{{ asset('/css/postList_postDescription/style.css') }}" rel="stylesheet"/>
+{% endblock %}
+
 {% block title %}Offres d'emploi basées sur votre recherche{% endblock %}
 
 {% block body %}
-    <div>
-        <ul class="alternance">
+    <div class="container d-flex mt-3">
+        <div>
+            <p class="h2 bckgrnd-text">Alternances</p>
+            <ul class="alternances">
+                {% for poste in postes%}
+                    {% if poste.label=="alternance" %}
+                        <ul class="poste-liste mb-3 px-4">
+                            <li class="poste-entr-name h3 text-center mt-2">{{ poste.entreprise.nom }}</li>
+                            <li class="poste-name">{{ poste.tag.nom }}</li>
+                            <li class="poste-place">{{ poste.lieu }}</li>
+                            <li class="poste-dates">{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
+                            <li class="poste-description">{{ poste.description }}</li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <p class="h2 bckgrnd-text">Stages</p>
+            <ul class="stages">
             {% for poste in postes%}
-                {% if poste.label=="alternance" %}
-                    <ul class="poste-liste">
-                        <li>{{ poste.label }}</li>
-                        <li>{{ poste.tag.nom }}</li>
-                        <li>{{ poste.lieu }}</li>
-                        <li>{{ poste.entreprise.nom }}</li>
-                        <li>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
-                        <li>{{ poste.description }}</li>
-                    </ul>
+                {% if poste.label=="stage" %}
+                <ul class="poste-liste mb-3 px-4">
+                    <li class="poste-entr-name h3 text-center mt-2">{{ poste.entreprise.nom }}</li>
+                    <li class="poste-name">{{ poste.tag.nom }}</li>
+                    <li class="poste-place">{{ poste.lieu }}</li>
+                    <li class="poste-dates">{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
+                    <li class="poste-description">{{ poste.description }}</li>
+                </ul>
                 {% endif %}
             {% endfor %}
-        </ul>
-    </div>
-    <div>
-        <ul class="stage">
-        {% for poste in postes%}
-            {% if poste.label=="stage" %}
-            <ul class="poste-liste">
-                <li>{{ poste.label }}</li>
-                <li>{{ poste.tag.nom }}</li>
-                <li>{{ poste.lieu }}</li>
-                <li>{{ poste.entreprise.nom }}</li>
-                <li>{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
-                <li>{{ poste.description }}</li>
             </ul>
-            {% endif %}
-        {% endfor %}
-        </ul>
+        </div>
     </div>
 {% endblock %}

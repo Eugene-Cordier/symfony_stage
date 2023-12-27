@@ -1,35 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ asset('css/poste.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/postList_postDescription/style.css') }}">
 {% endblock %}
 
 {% block title %}{{ poste.label }}{% endblock %}
 
 {% block body %}
-    <h1>{{ poste.label }}</h1>
+    <h1 class="bckgrnd-text mt-3">{{ poste.label }}</h1>
 
-    <dl>
-        <dt>Lieu:</dt>
-        <dd>{{ poste.lieu }}</dd>
+    <ul class="list-group">
+        <li class="list-group-item">Lieu: {{ poste.lieu }}</li>
 
-        <dt>Date de début:</dt>
-        <dd>{{ poste.datedeb|date('d/m/Y') }}</dd>
+        <li class="list-group-item">Date de début: {{ poste.datedeb|date('d/m/Y') }}</li>
 
         {% if poste.datefin is not null %}
-            <dt>Date de fin:</dt>
-            <dd>{{ poste.datefin|date('d/m/Y') }}</dd>
+            <li class="list-group-item">Date de fin: {{ poste.datefin|date('d/m/Y') }}</li>
         {% endif %}
 
-        <dt>Description:</dt>
-        <dd>{{ poste.description }}</dd>
+        <li class="list-group-item">Description: {{ poste.description }}</li>
 
-        <dt>Tag:</dt>
-        <dd>{{ poste.tag.nom }}</dd>
+        <li class="list-group-item">Tag: {{ poste.tag.nom }}</li>
 
-        <dt>Entreprise:</dt>
-        <dd>{{ poste.entreprise.nom }}</dd>
-        <button><a href="{{ path('app_insc_poste',{'id' : poste.id}) }}">inscrivez vous</button>
+        <li class="list-group-item">Entreprise: {{ poste.entreprise.nom }}</li>
 
-    </dl>
+        <button class="list-group-item btn btn-success"><a href="{{ path('app_insc_poste',{'id' : poste.id}) }}">inscrivez vous</button>
+
+    </ul>
 {% endblock %}
