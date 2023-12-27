@@ -36,3 +36,20 @@ ul {
     content: "Description: ";
 }
 
+.bckgrnd-text {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(to right, darkviolet, violet, #3a7bd5, darkviolet, violet, #3a7bd5, darkviolet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200%;
+    background-clip: text;
+    animation: animate-gradient 5s linear infinite;
+}
+
+@keyframes animate-gradient {
+    to {
+        background-position: 200%;
+    }
+}
