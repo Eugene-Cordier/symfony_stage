@@ -27,10 +27,18 @@
                                 <div class="infoposte" title="{{ postes.poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
+                                        <a href="{{ path('app_etudiant_poste_delete', { id: postes.id }) }}">
+                                            <span class="material-symbols-outlined text-danger">delete</span>
+                                        </a>
                                         <p>{{ postes.poste.entreprise.nom }}</p>
                                         <p>{{ postes.poste.lieu }}</p>
                                         <p>{{ postes.poste.datedeb|date("d/m/Y") }} - {{ postes.poste.datefin|date("d/m/Y") }}</p>
-                                        <p>Votre CV : </p>
+                                        <p>
+                                            Votre CV :
+                                            <a href="{{ path('app_etudiant_poste_update_cv', { id: postes.id }) }}">
+                                                <span class="material-symbols-outlined text-warning">edit</span>
+                                            </a>
+                                        </p>
                                         <img src="{{ postes.cv }}" alt="cv">
                                     </div>
                                 </div>
@@ -47,10 +55,18 @@
                                 <div class="infoposte" title="{{ postes.poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
+                                        <a href="{{ path('app_etudiant_poste_delete', { id: postes.id }) }}">
+                                            <span class="material-symbols-outlined text-danger">delete</span>
+                                        </a>
                                         <p>{{ postes.poste.entreprise.nom }}</p>
                                         <p>{{ postes.poste.lieu }}</p>
                                         <p>{{ postes.poste.datedeb|date("d/m/Y") }} - {{ postes.poste.datefin|date("d/m/Y") }}</p>
-                                        <p>Votre CV : </p>
+                                        <p>
+                                            Votre CV :
+                                            <a href="{{ path('app_etudiant_poste_update_cv', { id: postes.id }) }}">
+                                                <span class="material-symbols-outlined text-warning">edit</span>
+                                            </a>
+                                        </p>
                                         <img src="{{ postes.cv }}" alt="cv">
                                     </div>
                                 </div>
