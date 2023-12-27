@@ -14,7 +14,7 @@
                 {% for poste in postes%}
                     {% if poste.label=="alternance" %}
                         <ul class="poste-liste mb-3 px-4">
-                            <li class="poste-entr-name h3 text-center mt-2">{{ poste.entreprise.nom }}</li>
+                            <a href="{{ path('app_poste_info', {id: poste.id}) }}" target="_blank" rel="noopener noreferrer"><li class="poste-entr-name h3 text-center mt-2">{{ poste.entreprise.nom }}</li></a>
                             <li class="poste-name">{{ poste.tag.nom }}</li>
                             <li class="poste-place">{{ poste.lieu }}</li>
                             <li class="poste-dates">{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
@@ -30,7 +30,7 @@
             {% for poste in postes%}
                 {% if poste.label=="stage" %}
                 <ul class="poste-liste mb-3 px-4">
-                    <li class="poste-entr-name h3 text-center mt-2">{{ poste.entreprise.nom }}</li>
+                    <a href="{{ path('app_poste_info', {id: poste.id}) }}" target="_blank" rel="noopener noreferrer"><li class="poste-entr-name h3 text-center mt-2">{{ poste.entreprise.nom }}</li></a>
                     <li class="poste-name">{{ poste.tag.nom }}</li>
                     <li class="poste-place">{{ poste.lieu }}</li>
                     <li class="poste-dates">{{ poste.datedeb|date("d/m/Y") }} - {{ poste.datefin|date("d/m/Y") }}</li>
