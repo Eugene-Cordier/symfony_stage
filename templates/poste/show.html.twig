@@ -29,5 +29,7 @@
 
         <dt>Entreprise:</dt>
         <dd>{{ poste.entreprise.nom }}</dd>
+        <button><a href="{{ path('app_insc_poste',{'id' : poste.id}) }}">inscrivez vous</button>
+
     </dl>
 {% endblock %}
