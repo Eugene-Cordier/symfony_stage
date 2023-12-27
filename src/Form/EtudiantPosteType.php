@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 
 class EtudiantPosteType extends AbstractType
 {
@@ -16,7 +17,16 @@ class EtudiantPosteType extends AbstractType
             ->add('cv', FileType::class, [
                 'label' => 'CV',
                 'data_class' => null,
-            ])
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '1024k',
+                        'mimeTypes' => [
+                            'image/png',
+                            'image/jpeg',
+                        ]]),
+            ]])
         ;
     }
 
