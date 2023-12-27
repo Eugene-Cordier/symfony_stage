@@ -1,0 +1,23 @@
+ul {
+    list-style-type: none;
+    font-size: 1rem;
+    font-family: "Archivo Black", sans-serif;
+}
+
+.poste-name::before {
+    content: "Poste: ";
+}
+
+.poste-place::before {
+    content: "Lieu: ";
+}
+
+
+.poste-dates::before {
+    content: "Dates: ";
+}
+
+.poste-description::before {
+    content: "Description: ";
+}
+
