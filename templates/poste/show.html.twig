@@ -8,23 +8,23 @@
 
 {% block body %}
     <h1 class="bckgrnd-text mt-3">{{ poste.label }}</h1>
+    <div class="container mt-3">
+        <ul class="list-group">
+            <li class="list-group-item">Lieu: {{ poste.lieu }}</li>
 
-    <ul class="list-group">
-        <li class="list-group-item">Lieu: {{ poste.lieu }}</li>
+            <li class="list-group-item">Date de début: {{ poste.datedeb|date('d/m/Y') }}</li>
 
-        <li class="list-group-item">Date de début: {{ poste.datedeb|date('d/m/Y') }}</li>
+            {% if poste.datefin is not null %}
+                <li class="list-group-item">Date de fin: {{ poste.datefin|date('d/m/Y') }}</li>
+            {% endif %}
 
-        {% if poste.datefin is not null %}
-            <li class="list-group-item">Date de fin: {{ poste.datefin|date('d/m/Y') }}</li>
-        {% endif %}
+            <li class="list-group-item">Description: {{ poste.description }}</li>
 
-        <li class="list-group-item">Description: {{ poste.description }}</li>
+            <li class="list-group-item">Tag: {{ poste.tag.nom }}</li>
 
-        <li class="list-group-item">Tag: {{ poste.tag.nom }}</li>
+            <li class="list-group-item">Entreprise: {{ poste.entreprise.nom }}</li>
 
-        <li class="list-group-item">Entreprise: {{ poste.entreprise.nom }}</li>
-
-        <button class="list-group-item btn btn-success"><a href="{{ path('app_insc_poste',{'id' : poste.id}) }}">inscrivez vous</button>
-
-    </ul>
+            <button class="list-group-item btn btn-success"><a href="{{ path('app_insc_poste',{'id' : poste.id}) }}">inscrivez vous</button>
+        </ul>
+    </div>
 {% endblock %}
