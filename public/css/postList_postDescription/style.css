@@ -1,0 +1,62 @@
+ul {
+    list-style-type: none;
+    font-size: 1rem;
+    font-family: "Archivo Black", sans-serif;
+}
+
+.poste-entr-name {
+    font-size: 3em;
+    font-family: monospace;
+    background-color: #03bde4;
+    border: 2px solid #000;
+    padding: 0.25em 0.5em;
+    transition: background-color 2s ease-out;
+    transition: color 2s ease-out;
+}
+
+.poste-entr-name:hover {
+    background-color: darkviolet;
+    color: #fff;
+}
+
+.poste-name::before {
+    content: "Poste: ";
+}
+
+.poste-place::before {
+    content: "Lieu: ";
+}
+
+
+.poste-dates::before {
+    content: "Dates: ";
+}
+
+.poste-description::before {
+    content: "Description: ";
+}
+
+.bckgrnd-text {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    background: linear-gradient(to right, darkviolet, violet, #3a7bd5, darkviolet, violet, #3a7bd5, darkviolet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200%;
+    background-clip: text;
+    animation: animate-gradient 5s linear infinite;
+}
+
+@keyframes animate-gradient {
+    to {
+        background-position: 200%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+}
