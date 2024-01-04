@@ -1,0 +1,19 @@
+.form-element{
+    align-items: center;
+    font-weight: bold;
+    font-size: 25px;
+}
+.form-button{
+    align-items: center;
+}
+label.form-label{
+    text-align: center;
+}
+.mb-3{
+    display: flex;
+    flex-direction: column;
+}
+.inscription-form{
+    flex: 1;
+    display: flex;
+}
