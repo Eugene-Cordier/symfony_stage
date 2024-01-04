@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/css/postList_postDescription/style-inscription.css') }}">
+{% endblock %}
+
 {% block body %}
+    <div class="inscription-form">
     {{ form_start(form) }}
-    {{ form_row(form.cv,{'label':'insérer votre cv'}) }}
-    <button type="submit" class="btn btn-lg btn-primary w-100 mt-2">valider</button>
+    <div class="form-element">{{ form_row(form.cv,{'label':'Insérer votre CV'}) }}</div>
+    <div class="form-button"><button type="submit" class="btn btn-lg btn-primary w-100 mt-2">Valider</button></div>
     {{ form_end(form) }}
+    </div>
 {% endblock %}
