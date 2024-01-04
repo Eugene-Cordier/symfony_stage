@@ -1,0 +1,27 @@
+.container-mt-3{
+    flex: 1;
+    max-width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+.list-group-item {
+    border-color: #0a53be;
+    border-width: 3px;
+    border-radius: 4px;
+
+}
+.list-group-item-btn-btn-success{
+    background-color: #0a53be;
+    border-color: #0a53be;
+    border-width: 3px;
+    border-radius: 5px;
+}
+.text-button{
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 10px;
+    color: white;
+}
+.text-bold{
+    font-weight: bold;
+}
