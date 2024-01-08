@@ -7,6 +7,7 @@ use App\Entity\Poste;
 use App\Form\EtudiantPosteType;
 use App\Repository\PosteRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,13 +29,16 @@ class PosteController extends AbstractController
     }
 
     #[Route('/poste/{id}', name: 'app_poste_info', requirements: ['id' => '\d+'])]
-    public function show(Poste $poste): Response
+    public function show(
+        #[MapEntity(expr: 'repository.findWithTagAndEntreprise(id)')]
+        Poste $poste): Response
     {
         return $this->render(
             'poste/show.html.twig',
             ['poste' => $poste]
         );
     }
+
     #[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/poste/{id}/inscription', name: 'app_insc_poste', requirements: ['id' => '\d+'])]
     public function inscription(Poste $poste, Request $request, EntityManagerInterface $entityManager): Response
@@ -51,6 +55,7 @@ class PosteController extends AbstractController
 
             return $this->redirectToRoute('app_poste_info', ['id' => $poste->getId()]);
         }
+
         return $this->render('poste/inscription.html.twig', ['form' => $form]);
     }
 }
