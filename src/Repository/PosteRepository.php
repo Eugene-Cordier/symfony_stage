@@ -25,18 +25,16 @@ class PosteRepository extends ServiceEntityRepository
     public function search(string $search = ''): array
     {
         $qb = $this->createQueryBuilder('p');
-        if (!empty($search)) {
-            $qb->addSelect('t')
-                ->addSelect('e')
-                ->where('t.nom LIKE :search')
-                ->orWhere('e.nom LIKE :search')
-                ->orWhere('p.lieu LIKE :search')
-                ->orWhere('p.label LIKE :search')
-                ->leftJoin('p.tag', 't')
-                ->leftJoin('p.entreprise', 'e')
-                ->setParameter('search', '%'.$search.'%')
-            ;
-        }
+        $qb->addSelect('t')
+            ->addSelect('e')
+            ->where('LOWER(t.nom) LIKE LOWER(:search)')
+            ->orWhere('LOWER(e.nom) LIKE LOWER(:search)')
+            ->orWhere('LOWER(p.lieu) LIKE LOWER(:search)')
+            ->orWhere('LOWER(p.label) LIKE LOWER(:search)')
+            ->leftJoin('p.tag', 't')
+            ->leftJoin('p.entreprise', 'e')
+            ->setParameter('search', '%'.$search.'%')
+        ;
         $query = $qb->getQuery();
 
         return $query->execute();
