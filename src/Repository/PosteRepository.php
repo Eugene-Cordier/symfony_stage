@@ -40,28 +40,17 @@ class PosteRepository extends ServiceEntityRepository
         return $query->execute();
     }
 
-    //    /**
-    //     * @return Poste[] Returns an array of Poste objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findWithTagAndEntreprise(int $id): ?Poste
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.tag', 't')
+            ->leftJoin('p.entreprise', 'e')
+            ->addSelect('t')
+            ->addSelect('e')
+            ->where('p.id = :id')
+            ->setParameter(':id', $id);
+        $query = $qb->getQuery();
 
-    //    public function findOneBySomeField($value): ?Poste
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $query->getOneOrNullResult();
+    }
 }
