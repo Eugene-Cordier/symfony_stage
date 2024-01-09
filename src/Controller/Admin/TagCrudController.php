@@ -25,10 +25,10 @@ class TagCrudController extends AbstractCrudController
             TextEditorField::new('description'),
             AssociationField::new('postes')->setFormTypeOptions(
                 [
-                    'choice_label' => 'nbPoste',
+                    'choice_label' => 'label',
                     'query_builder' => function (PosteRepository $posteRepository) {
                         return $posteRepository->createQueryBuilder('p')
-                            ->where('p.tag_id=id');
+                            ;
                     },
                 ]
             )->formatValue(function ($value) {
