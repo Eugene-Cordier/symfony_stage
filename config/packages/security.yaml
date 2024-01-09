@@ -9,13 +9,21 @@ security:
             entity:
                 class: App\Entity\Etudiant
                 property: email
+        app_admin_provider:
+            entity:
+                class: App\Entity\Administrateur
+                property: email
+        app_users:
+            chain:
+                providers: ['app_user_provider','app_admin_provider']
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
             lazy: true
-            provider: app_user_provider
+            provider: app_users
             custom_authenticator: App\Security\UserAuthenticator
             logout:
                 path: app_logout
