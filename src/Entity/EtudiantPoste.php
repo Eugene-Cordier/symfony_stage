@@ -25,6 +25,9 @@ class EtudiantPoste
     #[ORM\JoinColumn(nullable: false)]
     private ?Poste $Poste = null;
 
+    #[ORM\Column(length: 10)]
+    private ?string $statut = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -66,6 +69,18 @@ class EtudiantPoste
     public function setPoste(?Poste $Poste): static
     {
         $this->Poste = $Poste;
+
+        return $this;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): static
+    {
+        $this->statut = $statut;
 
         return $this;
     }
