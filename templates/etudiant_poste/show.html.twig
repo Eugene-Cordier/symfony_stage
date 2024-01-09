@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des etudiants{% endblock %}
+
+{% block body %}
+    <h1>liste des etudiants inscrit dans le poste : {{ poste.entreprise.nom }}</h1>
+    <ul>
+    {% for etudiant in etudiants %}
+        <li>
+            <div>
+                <a href="{{ path('app_etudiant_poste_deleteAdmin', { id: etudiantPostes[loop.index0].id }) }}">
+                    <div class="material-symbols-outlined text-danger">delete</div>
+                </a>
+                <a href="{{ path('app_etudiant_poste_updateAdmin', { id: etudiantPostes[loop.index0].id }) }}">
+                    <span class="material-symbols-outlined text-warning">edit</span>
+                </a>
+                {{ etudiant.nom }} {{ etudiant.prenom }} ||
+                <div class="btn btn-lg btn-primary">{{ etudiantPostes[loop.index0].statut }}</div>
+            </div>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
