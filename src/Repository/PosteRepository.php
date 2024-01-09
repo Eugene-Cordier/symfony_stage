@@ -25,45 +25,32 @@ class PosteRepository extends ServiceEntityRepository
     public function search(string $search = ''): array
     {
         $qb = $this->createQueryBuilder('p');
-        if (!empty($search)) {
-            $qb->addSelect('t')
-                ->addSelect('e')
-                ->where('t.nom LIKE :search')
-                ->orWhere('e.nom LIKE :search')
-                ->orWhere('p.lieu LIKE :search')
-                ->orWhere('p.label LIKE :search')
-                ->leftJoin('p.tag', 't')
-                ->leftJoin('p.entreprise', 'e')
-                ->setParameter('search', '%'.$search.'%')
-            ;
-        }
+        $qb->addSelect('t')
+            ->addSelect('e')
+            ->where('LOWER(t.nom) LIKE LOWER(:search)')
+            ->orWhere('LOWER(e.nom) LIKE LOWER(:search)')
+            ->orWhere('LOWER(p.lieu) LIKE LOWER(:search)')
+            ->orWhere('LOWER(p.label) LIKE LOWER(:search)')
+            ->leftJoin('p.tag', 't')
+            ->leftJoin('p.entreprise', 'e')
+            ->setParameter('search', '%'.$search.'%')
+        ;
         $query = $qb->getQuery();
 
         return $query->execute();
     }
 
-    //    /**
-    //     * @return Poste[] Returns an array of Poste objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('p.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findWithTagAndEntreprise(int $id): ?Poste
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->leftJoin('p.tag', 't')
+            ->leftJoin('p.entreprise', 'e')
+            ->addSelect('t')
+            ->addSelect('e')
+            ->where('p.id = :id')
+            ->setParameter(':id', $id);
+        $query = $qb->getQuery();
 
-    //    public function findOneBySomeField($value): ?Poste
-    //    {
-    //        return $this->createQueryBuilder('p')
-    //            ->andWhere('p.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        return $query->getOneOrNullResult();
+    }
 }
