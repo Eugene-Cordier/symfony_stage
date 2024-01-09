@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Supprimer le poste</h1>
 
-    {{ form_start(form, {'attr': {'class': 'd-flex'}}) }}
+    {{ form_start(form, {'attr': {'class': 'd-flex flex-row'}}) }}
     {{ form_row(form.delete, {'label': 'Supprimer'}) }}
     {{ form_row(form.cancel, {'label': 'Annuler', 'attr': {'class': 'btn-secondary'}}) }}
     {{ form_end(form) }}
