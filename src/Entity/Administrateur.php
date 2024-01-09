@@ -4,9 +4,10 @@ namespace App\Entity;
 
 use App\Repository\AdministrateurRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: AdministrateurRepository::class)]
-class Administrateur implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface
+class Administrateur implements \Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface, UserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -91,5 +92,20 @@ class Administrateur implements \Symfony\Component\Security\Core\User\PasswordAu
         $this->email = $email;
 
         return $this;
+    }
+
+    public function getRoles(): array
+    {
+        return [];
+    }
+
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return '';
     }
 }
