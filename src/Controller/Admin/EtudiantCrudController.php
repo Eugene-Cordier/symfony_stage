@@ -58,7 +58,7 @@ class EtudiantCrudController extends AbstractCrudController
 
     public function setUserPassword($entityInstance): void
     {
-        $password = $this->getContext()->getRequest()->get('User')['password'];
+        $password = $this->getContext()->getRequest()->get('Etudiant')['password'];
         if (!empty($password)) {
             $entityInstance->setPassword($this->passwordHasher->hashPassword($entityInstance, $entityInstance->getPassword()));
         }
