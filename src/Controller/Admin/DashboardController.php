@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Administrateur;
 use App\Entity\Etudiant;
 use App\Entity\Entreprise;
 use App\Entity\EtudiantPoste;
@@ -51,5 +52,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Poste', 'fas fa-list', Poste::class);
         yield MenuItem::linkToCrud('Tag', 'fas fa-list', Tag::class);
         yield MenuItem::linkToCrud('EtudiantPostes', 'fas fa-list', etudiantPoste::class);
+        yield MenuItem::linkToCrud('Administrateur', 'fas fa-list', Administrateur::class);
     }
 }
