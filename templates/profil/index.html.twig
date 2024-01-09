@@ -23,7 +23,6 @@
                     <h4>Alternances : </h4>
                     {% for postes in app.user.etudiantPostes %}
                         {% if postes.poste.label == 'alternance' %}
-                            <a href="{{ path('app_poste_info',{'id': postes.poste.id})}}">
                                 <div class="infoposte" title="{{ postes.poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
@@ -33,6 +32,9 @@
                                         <p>{{ postes.poste.entreprise.nom }}</p>
                                         <p>{{ postes.poste.lieu }}</p>
                                         <p>{{ postes.poste.datedeb|date("d/m/Y") }} - {{ postes.poste.datefin|date("d/m/Y") }}</p>
+                                        <a href="{{ path('app_poste_info',{'id': postes.poste.id})}}">
+                                            <p class="btn btn-lg btn-primary">{{ postes.statut }}</p>
+                                        </a>
                                         <p>
                                             Votre CV :
                                             <a href="{{ path('app_etudiant_poste_update_cv', { id: postes.id }) }}">
@@ -42,7 +44,6 @@
                                         <img src="{{ postes.cv }}" alt="cv">
                                     </div>
                                 </div>
-                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>
@@ -51,7 +52,6 @@
                     <h4>Stages : </h4>
                     {% for postes in app.user.etudiantPostes %}
                         {% if postes.poste.label == 'stage' %}
-                            <a href="{{ path('app_poste_info',{'id': postes.poste.id}) }}">
                                 <div class="infoposte" title="{{ postes.poste.description }}">
                                     {#{{ poste.entreprise.logo }}#}
                                     <div class="texteinfoposte">
@@ -61,6 +61,9 @@
                                         <p>{{ postes.poste.entreprise.nom }}</p>
                                         <p>{{ postes.poste.lieu }}</p>
                                         <p>{{ postes.poste.datedeb|date("d/m/Y") }} - {{ postes.poste.datefin|date("d/m/Y") }}</p>
+                                        <a href="{{ path('app_poste_info',{'id': postes.poste.id})}}">
+                                            <p class="btn btn-lg btn-primary">{{ postes.statut }}</p>
+                                        </a>
                                         <p>
                                             Votre CV :
                                             <a href="{{ path('app_etudiant_poste_update_cv', { id: postes.id }) }}">
@@ -70,7 +73,6 @@
                                         <img src="{{ postes.cv }}" alt="cv">
                                     </div>
                                 </div>
-                            </a>
                         {% endif %}
                     {% endfor %}
                 </div>

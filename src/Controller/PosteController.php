@@ -33,6 +33,10 @@ class PosteController extends AbstractController
         #[MapEntity(expr: 'repository.findWithTagAndEntreprise(id)')]
         Poste $poste): Response
     {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_etudiant_poste', ['id' => $poste->getId()]);
+        }
+
         return $this->render(
             'poste/show.html.twig',
             ['poste' => $poste]
@@ -50,6 +54,7 @@ class PosteController extends AbstractController
             $etudPoste->setCv(file_get_contents($form->get('cv')->getData()));
             $etudPoste->setPoste($poste);
             $etudPoste->setEtudiant($this->getUser());
+            $etudPoste->setStatut('en attente');
             $entityManager->persist($etudPoste);
             $entityManager->flush();
 
