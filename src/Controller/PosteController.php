@@ -33,6 +33,10 @@ class PosteController extends AbstractController
         #[MapEntity(expr: 'repository.findWithTagAndEntreprise(id)')]
         Poste $poste): Response
     {
+        if ($this->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('app_etudiant_poste', ['id' => $poste->getId()]);
+        }
+
         return $this->render(
             'poste/show.html.twig',
             ['poste' => $poste]
