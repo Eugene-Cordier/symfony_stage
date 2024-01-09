@@ -50,6 +50,7 @@ class PosteController extends AbstractController
             $etudPoste->setCv(file_get_contents($form->get('cv')->getData()));
             $etudPoste->setPoste($poste);
             $etudPoste->setEtudiant($this->getUser());
+            $etudPoste->setStatut('en attente');
             $entityManager->persist($etudPoste);
             $entityManager->flush();
 
