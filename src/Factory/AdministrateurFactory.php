@@ -71,6 +71,7 @@ final class AdministrateurFactory extends ModelFactory
             'password' => $password,
             'prenom' => $firstname,
             'email' => $email,
+            'roles' => [],
         ];
     }
 
