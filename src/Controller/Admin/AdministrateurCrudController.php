@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Administrateur;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
@@ -41,6 +42,16 @@ class AdministrateurCrudController extends AbstractCrudController
                     'empty_data' => '',
                     'attr' => ['autocomplete' => 'new-password'],
                 ]),
+            ArrayField::new('roles')
+                ->formatValue(function ($value) {
+                    if (in_array('ROLE_ADMIN', $value)) {
+                        return '<i class="material-icons">manage_accounts</i>';
+                    } elseif (in_array('ROLE_USER', $value)) {
+                        return '<i class="material-icons">person</i>';
+                    } else {
+                        return '';
+                    }
+                }),
         ];
     }
 
@@ -54,6 +65,7 @@ class AdministrateurCrudController extends AbstractCrudController
     {
         $this->setUserPassword($entityInstance);
         parent::persistEntity($entityManager, $entityInstance);
+
     }
 
     public function setUserPassword($entityInstance): void

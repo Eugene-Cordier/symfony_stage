@@ -22,9 +22,9 @@ class EtudiantPosteController extends AbstractController
     #[Route('/etudiantPoste/{id}', name: 'app_etudiant_poste')]
     public function show(PosteRepository $PosteRepository, EtudiantPosteRepository $etudiantPosteRepository, int $id): Response
     {
-        /**if (!$this->isGranted('ROLE_ADMIN')) {
+        if (!$this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('app_poste_info', ['id' => $id]);
-        }*/
+        }
 
         $poste = $PosteRepository->find($id);
         $lstEtudiantPoste = $etudiantPosteRepository->findby([]);
@@ -74,7 +74,7 @@ class EtudiantPosteController extends AbstractController
         ]);
     }
 
-    /** #[IsGranted('IS_ADMIN')]*/
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/etudiantPoste/{id}/deleteAdmin', name: 'app_etudiant_poste_deleteAdmin')]
     public function deletePosteAdmin(Request $request, EtudiantPoste $etudiantPoste, EntityManagerInterface $entityManager): Response
     {
@@ -106,7 +106,7 @@ class EtudiantPosteController extends AbstractController
         ]);
     }
 
-    /** #[IsGranted('IS_ADMIN')]*/
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/etudiantPoste/{id}/updateAdmin', name: 'app_etudiant_poste_updateAdmin')]
     public function updateAdmin(Request $request, EtudiantPoste $etudiantPoste, EntityManagerInterface $entityManager): Response
     {
