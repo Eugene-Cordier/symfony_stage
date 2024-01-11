@@ -14,7 +14,7 @@ class ProfilController extends AbstractController
     #[Route('/profil', name: 'app_profil')]
     public function index(): Response
     {
-        if ($this->isGranted('IS_ADMIN')) {
+        if ($this->isGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('admin');
         }
 
