@@ -6,7 +6,7 @@
     <h1>Modifier le CV</h1>
 
     {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
-    {{ form_widget(form) }}
-    <button type="submit">Enregistrer</button>
+    <div class="form-element">{{ form_row(form.cv,{'label':'Insérer votre CV'}) }}</div>
+    <button type="submit" class="btn btn-lg btn-primary">Enregistrer</button>
     {{ form_end(form) }}
 {% endblock %}

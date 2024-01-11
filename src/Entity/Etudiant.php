@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: EtudiantRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il y a déja un compte avec cette adresse email')]
@@ -19,21 +20,56 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?int $id = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 30,
+        minMessage: 'Le login doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le login est limité à {{ limit }} caractères',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 30)]
     private ?string $login = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 180,
+        minMessage: 'L\'email doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'L\'email est limité à {{ limit }} caractères',
+    )]
+    #[Assert\NotBlank]
+    #[Assert\Email(message: 'L\'email {{ value }} n\'est pas valide.', )]
     #[ORM\Column(length: 180, unique: true)]
     private ?string $email = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: 'Le nom doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le nom est limité à {{ limit }} caractères',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[Assert\Length(
+        min: 2,
+        max: 255,
+        minMessage: 'Le prénom doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le prénom est limité à {{ limit }} caractères',
+    )]
+    #[Assert\NotBlank]
     #[ORM\Column(length: 255)]
     private ?string $prenom = null;
 
     /**
-     * @var string The hashed password
+     * @var ?string The hashed password
      */
+    #[Assert\Length(
+        min: 8,
+        max: 255,
+        minMessage: 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
+        maxMessage: 'Le mot de passe est limité à {{ limit }} caractères',
+    )]
     #[ORM\Column]
     private ?string $password = null;
 

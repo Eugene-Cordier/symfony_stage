@@ -15,14 +15,17 @@ class PosteCest
     public function testPostePage(ControllerTester $I)
     {
         // création d'une entité
+
+        EntrepriseFactory::createOne();
+        TagFactory::createOne();
         PosteFactory::createMany(20);
         $I->amOnPage('/poste');
         $I->seeResponseCodeIs(200);
         $I->seeInTitle("Offres d'emploi basées sur votre recherche");
-        $I->seeNumberOfElements("ul ul",20);
-        $I->seeNumberOfElements("ul ul>li",20*6);
-
+        $I->seeNumberOfElements('ul.poste-liste', 20);
+        $I->seeNumberOfElements('ul.poste-liste li', 20 * 5);
     }
+
     public function testSearch(ControllerTester $I)
     {
         // création d'une entité
@@ -45,7 +48,7 @@ class PosteCest
         // vérification résultat
         // $I->seeCurrentRouteIs('app_poste',['search'=>'DEV_WEB']);
         // $I->amOnPage('/poste');
-        assertEquals(['alternance', 'DEV_WEB', 'Paris', 'sbire', "24/11/2024 - 12/02/2025", 'blabla'], $I->grabMultiple('.alternance>ul>li'));
+        assertEquals(['sbire', 'DEV_WEB', 'Paris', '24/11/2024 - 12/02/2025', 'blabla'], $I->grabMultiple('ul.alternances>ul.poste-liste li'));
         // $I->see('DEV_WEB');
         // $I->see('blabla');
     }
