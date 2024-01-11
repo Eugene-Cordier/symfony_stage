@@ -64,12 +64,6 @@ class Etudiant implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @var ?string The hashed password
      */
-    #[Assert\Length(
-        min: 8,
-        max: 255,
-        minMessage: 'Votre mot de passe doit comporter au moins {{ limit }} caractères',
-        maxMessage: 'Le mot de passe est limité à {{ limit }} caractères',
-    )]
     #[ORM\Column]
     private ?string $password = null;
 
