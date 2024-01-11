@@ -51,10 +51,12 @@ class RecruteurCrudController extends AbstractCrudController
             $recruteur->setPassword($hashedPassword);
         }
     }
-
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        $this->setUserPassword($entityInstance);
+        if ($entityInstance instanceof Recruteur) {
+            $this->setUserPassword($entityInstance, $entityInstance->getPassword());
+        }
+
         parent::updateEntity($entityManager, $entityInstance);
     }
 
