@@ -3,6 +3,7 @@
 namespace App\Tests\Controller\profil;
 
 use App\Factory\EtudiantFactory;
+use App\Factory\EtudiantPosteFactory;
 use App\Factory\PosteFactory;
 use App\Tests\Support\ControllerTester;
 
@@ -32,10 +33,11 @@ class ProfilCest
             'prenom' => 'tom',
             'postes' => [$poste],
         ]);
+        EtudiantPosteFactory::createOne(['etudiant' => $etud, 'poste' => $poste]);
         $realEtud = $etud->object();
         $I->amLoggedInAs($realEtud);
         $I->amOnPage('/profil');
         $I->seeResponseCodeIsSuccessful();
-        $I->seeNumberOfElements('div.alternance a', 1);
+        $I->seeNumberOfElements('div.infoposte', 1);
     }
 }
