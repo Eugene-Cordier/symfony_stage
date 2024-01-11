@@ -29,7 +29,7 @@ class IndexCest
         $I->amOnPage('/poste');
         $I->seeResponseCodeIsSuccessful();
         $I->seeInTitle("Offres d'emploi basées sur votre recherche");
-        $I->seeNumberOfElements('ul.alternance, ul.stage', 2);
+        $I->seeNumberOfElements('ul.alternances, ul.stages', 2);
     }
 
     public function testSearch(ControllerTester $I)
