@@ -47,7 +47,7 @@ class RecruteurCrudController extends AbstractCrudController
     public function setUserPassword($entityInstance): void
     {
         $password = $this->getContext()->getRequest()->get('Recruteur')['password'];
-        if (!empty($password)) {
+        if (!empty($password) || $password !== null) {
             $entityInstance->setPassword($this->passwordHasher->hashPassword($entityInstance, $entityInstance->getPassword()));
         }
     }
