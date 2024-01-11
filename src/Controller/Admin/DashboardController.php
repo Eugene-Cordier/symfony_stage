@@ -7,6 +7,7 @@ use App\Entity\Etudiant;
 use App\Entity\Entreprise;
 use App\Entity\EtudiantPoste;
 use App\Entity\Poste;
+use App\Entity\Recruteur;
 use App\Entity\Tag;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
@@ -48,6 +49,7 @@ class DashboardController extends AbstractDashboardController
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Etudiant', 'fas fa-list', Etudiant::class);
+        yield MenuItem::linkToCrud('Recruteur', 'fas fa-list', Recruteur::class);
         yield MenuItem::linkToCrud('Entreprise', 'fas fa-list', Entreprise::class);
         yield MenuItem::linkToCrud('Poste', 'fas fa-list', Poste::class);
         yield MenuItem::linkToCrud('Tag', 'fas fa-list', Tag::class);
