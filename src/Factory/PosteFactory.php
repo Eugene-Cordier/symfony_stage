@@ -56,8 +56,8 @@ final class PosteFactory extends ModelFactory
         }
         $datedeb = self::faker()->dateTimeBetween('+3 month', '+1 year');
         $datefin = $datedeb->format('Y-m-d H:i:s')." +{$r} days";
-        $entreprise = null;
-        $tag = null;
+        $entreprise = EntrepriseFactory::random();
+        $tag = TagFactory::random();
 
         return [
             'date_deb' => $datedeb,
