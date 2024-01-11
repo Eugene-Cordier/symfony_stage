@@ -7,9 +7,13 @@
 {% block title %}Offres d'emploi basées sur votre recherche{% endblock %}
 
 {% block body %}
+    {% if postes is empty %}
+        <p class="h2 bckgrnd-text mt-5">Aucun poste trouvé</p>
+    {% endif %}
     <div class="container d-flex mt-3">
         <div>
-            {% if search=="alternance" or search!="stage"%}
+
+            {% if search=="alternance" or search!="stage"  and postes is not empty%}
                 <p class="h2 bckgrnd-text">Alternances</p>
             {% endif %}
             <ul class="alternances">
@@ -27,7 +31,7 @@
             </ul>
         </div>
         <div>
-            {% if search=="stage" or search!="alternance" %}
+            {% if search=="stage" or search!="alternance" and postes is not empty%}
                 <p class="h2 bckgrnd-text">Stages</p>
             {% endif %}
             <ul class="stages">
