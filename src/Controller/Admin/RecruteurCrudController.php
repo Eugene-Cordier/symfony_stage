@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Recruteur;
-use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -43,6 +42,7 @@ class RecruteurCrudController extends AbstractCrudController
                 ]),
         ];
     }
+
     public function setUserPassword($entityInstance): void
     {
         $password = $this->getContext()->getRequest()->get('Recruteur')['password'];
@@ -50,5 +50,4 @@ class RecruteurCrudController extends AbstractCrudController
             $entityInstance->setPassword($this->passwordHasher->hashPassword($entityInstance, $entityInstance->getPassword()));
         }
     }
-
 }
