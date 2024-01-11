@@ -9,7 +9,9 @@
 {% block body %}
     <div class="container d-flex mt-3">
         <div>
-            <p class="h2 bckgrnd-text">Alternances</p>
+            {% if search=="alternance" or search!="stage"%}
+                <p class="h2 bckgrnd-text">Alternances</p>
+            {% endif %}
             <ul class="alternances">
                 {% for poste in postes%}
                     {% if poste.label=="alternance" %}
@@ -25,7 +27,9 @@
             </ul>
         </div>
         <div>
-            <p class="h2 bckgrnd-text">Stages</p>
+            {% if search=="stage" or search!="alternance" %}
+                <p class="h2 bckgrnd-text">Stages</p>
+            {% endif %}
             <ul class="stages">
             {% for poste in postes%}
                 {% if poste.label=="stage" %}
