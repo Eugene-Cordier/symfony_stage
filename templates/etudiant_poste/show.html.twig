@@ -16,7 +16,7 @@
                 </a>
                 {{ etudiant.nom }} {{ etudiant.prenom }} ||
                 <div class="btn btn-success">{{ etudiantPostes[loop.index0].statut }}</div>
-                <img src="{{ etudiantPostes[loop.index0].cv }}" alt="cv">
+                <img class="cv" src="{{ etudiantPostes[loop.index0].cv }}" alt="cv">
             </div>
         </li>
     {% endfor %}
