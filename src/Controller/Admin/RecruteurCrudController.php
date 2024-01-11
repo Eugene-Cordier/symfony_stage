@@ -9,9 +9,16 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class RecruteurCrudController extends AbstractCrudController
 {
+    private UserPasswordHasherInterface $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
     public static function getEntityFqcn(): string
     {
         return Recruteur::class;
@@ -25,6 +32,14 @@ class RecruteurCrudController extends AbstractCrudController
             TextField::new('nom'),
             TextField::new('login'),
             EmailField::new('email'),
+            TextField::new('password')
+                ->onlyOnForms()
+                ->setFormType(PasswordType::class)
+                ->setFormTypeOptions([
+                    'required' => false,
+                    'empty_data' => '',
+                    'attr' => ['autocomplete' => 'new-password'],
+                ]),
         ];
     }
 
