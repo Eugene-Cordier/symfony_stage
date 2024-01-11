@@ -11,21 +11,21 @@
     <h1 class="bckgrnd-text mt-3">{{ poste.label }}</h1>
     <div class="container-mt-3">
         <ul class="list-group">
-            <li class="list-group-item"><div class="text-bold">Lieu:</div> {{ poste.lieu }}</li>
+            <li class="list-group-item"><div class="text-bold">Lieu :</div> {{ poste.lieu }}</li>
 
-            <li class="list-group-item"><div class="text-bold">Date de début:</div> {{ poste.datedeb|date('d/m/Y') }}</li>
+            <li class="list-group-item"><div class="text-bold">Date de début :</div> {{ poste.datedeb|date('d/m/Y') }}</li>
 
             {% if poste.datefin is not null %}
-                <li class="list-group-item"><div class="text-bold">Date de fin:</div> {{ poste.datefin|date('d/m/Y') }}</li>
+                <li class="list-group-item"><div class="text-bold">Date de fin :</div> {{ poste.datefin|date('d/m/Y') }}</li>
             {% endif %}
 
-            <li class="list-group-item"><div class="text-bold">Description:</div> {{ poste.description }}</li>
+            <li class="list-group-item"><div class="text-bold">Description :</div> {{ poste.description }}</li>
 
-            <li class="list-group-item"><div class="text-bold">Tag:</div> {{ poste.tag.nom }}</li>
+            <li class="list-group-item"><div class="text-bold">Tag :</div> {{ poste.tag.nom }}</li>
 
-            <li class="list-group-item"><div class="text-bold">Entreprise:</div> {{ poste.entreprise.nom }}</li>
+            <li class="list-group-item"><div class="text-bold">Entreprise :</div> {{ poste.entreprise.nom }}</li>
 
-            <button class="list-group-item-btn-btn-success"><a href="{{ path('app_insc_poste',{'id' : poste.id}) }}" class="text-button">inscrivez vous</a></button>
+            <button class="list-group-item-btn-btn-success"><a href="{{ path('app_insc_poste',{'id' : poste.id}) }}" class="text-button">Inscrivez-vous</a></button>
         </ul>
     </div>
 {% endblock %}

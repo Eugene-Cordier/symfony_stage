@@ -15,9 +15,9 @@ class RegistrationAdminType extends AbstractType
         $builder
             ->add('statut', ChoiceType::class, [
                 'choices' => [
-                    'en attente' => 'en attente',
-                    'valider' => 'valider',
-                    'refuser' => 'refuser',
+                    'En attente' => 'En attente',
+                    'Validé' => 'Validé',
+                    'Refusé' => 'Refusé',
                 ],
             ])
         ;

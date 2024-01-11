@@ -261,7 +261,7 @@ form {
     gap: 10px;
 }
 
-form .mb-3 {
+.log .mb-3 {
     width: 90%;
     max-width: 570px;
 }

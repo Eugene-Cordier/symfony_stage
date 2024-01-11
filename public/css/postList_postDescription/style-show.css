@@ -1,4 +1,5 @@
 .container-mt-3{
+    margin-top: 20px;
     flex: 1;
     max-width: 70%;
     margin-left: 15%;
@@ -15,6 +16,7 @@
     border-color: #0a53be;
     border-width: 3px;
     border-radius: 5px;
+    margin-top: 20px;
 }
 .text-button{
     font-size: 25px;
