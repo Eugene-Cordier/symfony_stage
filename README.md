@@ -1,4 +1,4 @@
-# SAE 3-01 : AprentiStage
+# SAE 3-01 : ApprentiStage
 
 ## auteur  
 - Daret Tom (dare0005)
@@ -57,3 +57,5 @@ détruit l'ancienne et génère une nouvelle :
 ```shell
 composer db
 ```
+## accès au site
+http://10.31.32.184:8000/site
